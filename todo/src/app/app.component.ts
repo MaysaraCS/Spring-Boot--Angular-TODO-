@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { LoginComponent } from '../components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../components/footer/footer.component';
+import { MenuComponent } from '../components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, LoginComponent,FormsModule, FooterComponent, MenuComponent, AppComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'todo';
+  message = 'Welcome to my todo app';
 }
