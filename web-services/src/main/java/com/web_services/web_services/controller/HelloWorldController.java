@@ -2,7 +2,7 @@ package com.web_services.web_services.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class HelloWorldController {
     //@RequestMapping(method = RequestMethod.GET, path = "/hello")
@@ -12,7 +12,7 @@ public class HelloWorldController {
     }
     @GetMapping(path = "/hello-bean")
     public HelloWorldBean helloWorldBean() {
-        return new HelloWorldBean("Hello World This is a bean");
+        return new HelloWorldBean("Hello This is my message check");
     }
     @GetMapping(path = "/hello/path-variable/{name}")
     public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
