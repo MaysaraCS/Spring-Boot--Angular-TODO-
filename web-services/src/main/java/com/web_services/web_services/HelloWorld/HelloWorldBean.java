@@ -1,4 +1,4 @@
-package com.web_services.web_services.controller;
+package com.web_services.web_services.HelloWorld;
 
 public class HelloWorldBean {
     private String messege;

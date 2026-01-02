@@ -4,10 +4,11 @@ import { LoginComponent } from '../components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../components/footer/footer.component';
 import { MenuComponent } from '../components/menu/menu.component';
+import { TodoComponent } from '../components/todo/todo.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, LoginComponent,FormsModule, FooterComponent, MenuComponent, AppComponent],
+  imports: [RouterOutlet, RouterLink, LoginComponent,FormsModule, FooterComponent, MenuComponent, AppComponent,TodoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

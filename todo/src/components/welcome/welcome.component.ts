@@ -31,15 +31,30 @@ export class WelcomeComponent implements OnInit{
   }
 
   getWelcomeMessege(){
-    console.log(this.service.executeHelloWorldService());
+    //console.log(this.service.executeHelloWorldService());
     this.service.executeHelloWorldService().subscribe(
-      response => this.handleSuccessfulResponse(response)
+      response => this.handleSuccessfulResponse(response),
+      error => this.handleErrorResponse(error)
     );
-    console.log('last line of getWelcomeMessege')
+    //console.log('last line of getWelcomeMessege')
+  }
+
+  getWelcomeMessegeWithParameter(){
+    this.service.executeHelloWorldServiceWithPathVariable(this.name).subscribe(
+      response => this.handleSuccessfulResponse(response),
+      error => this.handleErrorResponse(error)
+    );
   }
   handleSuccessfulResponse(response: any){
     this.welcomeMessageFromService = response.messege
     // console.log(response);
     // console.log(response.message);
+  }
+
+  handleErrorResponse(error: any) {
+    // console.log(error);
+    // console.log(error.error);
+    // console.log(error.message);
+    this.welcomeMessageFromService = error.error.messege;
   }
 }
