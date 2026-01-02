@@ -16,7 +16,7 @@
       <tr *ngFor="let todo of todos">
         <td>{{ todo.description }}</td>
         <td>{{ todo.targetDate | date | uppercase }}</td>
-        <td>{{ todo.done }}</td>
+        <td>{{ todo.isDone }}</td>
         <td>
           <button (click)="updateTodo(todo.id)" class="btn btn-success">
             Update
@@ -32,6 +32,6 @@
     </tbody>
   </table>
   <div>
-    <button (click)="addTodo()" class="btn btn-primary">Add</button>
+    <button (click)="addTodo()" class="btn btn-primary">Add New</button>
   </div>
 </div>

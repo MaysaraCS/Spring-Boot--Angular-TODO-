@@ -59,7 +59,7 @@ public class Todo {
         return targetDate;
     }
 
-    public boolean isDone() {
+    public boolean getIsDone() {
         return isDone;
     }
 

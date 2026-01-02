@@ -19,13 +19,12 @@ export class TodoComponent implements OnInit{
   ){}
 
   id: number = 0;
-  todo: Todo = new Todo(this.id, '', false, new Date());
+  todo: Todo = new Todo(this.id,'', '',  new Date(),false);
   
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    this.todo = new Todo(this.id, 'maysara', false, new Date());
-
+    this.id = +this.route.snapshot.params['id'];
+    this.todo = new Todo(this.id, 'maysara', '', new Date(), false);
 
     if(this.id != -1){
       this.todoService.retrieveTodo('maysara',this.id).subscribe(
@@ -35,7 +34,7 @@ export class TodoComponent implements OnInit{
     }
   }
   saveTodo(){
-    if(this.id === -1){
+    if(this.id == -1){
       
       // call create todo 
       this.todoService.createTodo('maysara' ,this.todo).subscribe(
