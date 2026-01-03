@@ -1,6 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { Api_URL } from '../../app.constants';
+
+
+export const TOKEN = "token"
+export const AUTHINTICATED_USER = "authenticaterUser"
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +13,6 @@ import { map } from 'rxjs';
 export class BasicAuthenticationService {
 
   constructor(private http:HttpClient) { }
-
-  authenticate(username:string, password:string) {
-    //console.log('before ' + this.isUserLoggedIn());
-    if(username==="maysara" && password === 'maysara') {
-      sessionStorage.setItem('authenticaterUser', username);
-      //console.log('after ' + this.isUserLoggedIn());
-      return true;
-    }
-    return false;
-  }
   
   executeAuthenticationService(username:string, password:string) {
     // in the case of service calls we use observables asyn call
@@ -30,14 +25,16 @@ export class BasicAuthenticationService {
         Authorization: basicAuthHeaderString
       }
     )
-    return this.http.get<AuthBean>(`http://localhost:8080/basicAuth`,
+    return this.http.get<AuthBean>(`${Api_URL}/basicAuth`,
       {headers}
     ).pipe(
       // pipe checks if the request successed or fails 
       // pipe is for : if this thing is successful then do this thing as well 
       map(
         data =>{
-          sessionStorage.setItem('authenticaterUser', username);
+          sessionStorage.setItem(AUTHINTICATED_USER, username);
+          // create the basic auth token
+          sessionStorage.setItem(TOKEN, basicAuthHeaderString);
           // the observable is only working when someone subscribe to it
           // make sure that whoever subscribes to it can see the data
           return data;
@@ -47,13 +44,24 @@ export class BasicAuthenticationService {
   }
   
 
+  getAuthenticatedUser() {
+    return sessionStorage.getItem(AUTHINTICATED_USER)
+  }
+
+  getAuthenticatedToken() {
+    if(this.getAuthenticatedUser()){
+      return sessionStorage.getItem(TOKEN)
+    }
+  }
+
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('authenticaterUser')
+    let user = sessionStorage.getItem(AUTHINTICATED_USER)
     return !(user === null)
   }
 
   logout(){
-    sessionStorage.removeItem('authenticaterUser')
+    sessionStorage.removeItem(AUTHINTICATED_USER)
+    sessionStorage.removeItem(TOKEN)
   }
 }
 

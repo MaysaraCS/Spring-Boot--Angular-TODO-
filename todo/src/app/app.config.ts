@@ -8,11 +8,11 @@ import { HttpInterceptorService } from './service/http/http-interceptor.service'
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
-    // {
-    //   provide: HTTP_INTERCEPTORS, 
-    //   useClass: HttpInterceptorService, 
-    //   multi: true 
-    // },
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: HttpInterceptorService, 
+      multi: true 
+    },
   provideHttpClient(withInterceptorsFromDi())
 ]
 };
