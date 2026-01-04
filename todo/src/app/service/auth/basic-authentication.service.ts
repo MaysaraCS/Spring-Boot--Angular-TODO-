@@ -13,20 +13,22 @@ export const AUTHINTICATED_USER = "authenticaterUser"
 export class BasicAuthenticationService {
 
   constructor(private http:HttpClient) { }
-  
+
   executeAuthenticationService(username:string, password:string) {
     // in the case of service calls we use observables asyn call
     // encode using windows base 64
     let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
     
-
     let headers = new HttpHeaders(
       {
         Authorization: basicAuthHeaderString
       }
     )
-    return this.http.get<AuthBean>(`${Api_URL}/basicAuth`,
-      {headers}
+
+
+    return this.http.get<AuthBean>(`${Api_URL}/basicAuth`,{
+      headers
+    }
     ).pipe(
       // pipe checks if the request successed or fails 
       // pipe is for : if this thing is successful then do this thing as well 
@@ -34,7 +36,28 @@ export class BasicAuthenticationService {
         data =>{
           sessionStorage.setItem(AUTHINTICATED_USER, username);
           // create the basic auth token
-          sessionStorage.setItem(TOKEN, basicAuthHeaderString);
+          sessionStorage.setItem(TOKEN,basicAuthHeaderString );
+          // the observable is only working when someone subscribe to it
+          // make sure that whoever subscribes to it can see the data
+          return data;
+        }
+      )
+    );
+  }
+  executeJWTAuthenticationService(username:string, password:string) {
+
+    return this.http.post<any>(`${Api_URL}/authenticate`,{
+      username,
+      password
+    }
+    ).pipe(
+      // pipe checks if the request successed or fails 
+      // pipe is for : if this thing is successful then do this thing as well 
+      map(
+        data =>{
+          sessionStorage.setItem(AUTHINTICATED_USER, username);
+          // create the basic auth token
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
           // the observable is only working when someone subscribe to it
           // make sure that whoever subscribes to it can see the data
           return data;

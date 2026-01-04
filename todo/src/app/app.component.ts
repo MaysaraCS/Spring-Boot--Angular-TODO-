@@ -8,7 +8,7 @@ import { TodoComponent } from '../components/todo/todo.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, LoginComponent,FormsModule, FooterComponent, MenuComponent, AppComponent,TodoComponent],
+  imports: [RouterOutlet, FormsModule, FooterComponent, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

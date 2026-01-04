@@ -1,13 +1,13 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../../app/service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../../app/service/auth/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink,FormsModule,NgIf],
+  imports: [FormsModule,NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -47,6 +47,22 @@ export class LoginComponent implements OnInit{
     
     // this is now a async call
     this.basicAuthService.executeAuthenticationService(this.username, this.password).subscribe(
+      data =>{
+        console.log(data)
+        //Redirect to Welcome Page
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin = false
+      },
+      error =>{
+        console.log(error)
+        this.invalidLogin = true
+      }
+    )
+  }
+  handleJWTAuthLogin() {
+    
+    // this is now a async call
+    this.basicAuthService.executeJWTAuthenticationService(this.username, this.password).subscribe(
       data =>{
         console.log(data)
         //Redirect to Welcome Page
