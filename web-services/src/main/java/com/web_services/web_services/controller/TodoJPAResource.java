@@ -54,6 +54,7 @@ public class TodoJPAResource {
     public ResponseEntity<Void> createTodo(@PathVariable String username, @RequestBody Todo todo) {
 
         todo.setUsername(username);
+        todo.setId(null);
         Todo createdTodo = todoJpaRepository.save(todo);
         //Todo createdTodo = todoService.save(todo);
         // what is the URL of the created resource?
