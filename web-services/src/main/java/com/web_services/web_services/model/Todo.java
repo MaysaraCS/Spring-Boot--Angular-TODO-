@@ -1,10 +1,22 @@
 package com.web_services.web_services.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Todo {
+
+    // make sure to make the id Long
+    @Id
+    // to be auto generated
+    @GeneratedValue
     private Long id;
+
     private String username;
     private String description;
     private Date targetDate;
