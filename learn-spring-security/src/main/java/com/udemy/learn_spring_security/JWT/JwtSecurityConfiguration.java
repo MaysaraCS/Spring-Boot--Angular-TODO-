@@ -33,7 +33,8 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Configuration
+// disable this to enable basic auth
+//@Configuration
 public class JwtSecurityConfiguration {
 
     // securityFilterChain is used to verify the JWT token

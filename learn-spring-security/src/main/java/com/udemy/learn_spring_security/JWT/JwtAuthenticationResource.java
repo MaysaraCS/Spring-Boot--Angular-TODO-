@@ -10,7 +10,8 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+// disable the jwt to be able to use basic auth
+//@RestController
 public class JwtAuthenticationResource {
 
     private JwtEncoder jwtEncoder;
