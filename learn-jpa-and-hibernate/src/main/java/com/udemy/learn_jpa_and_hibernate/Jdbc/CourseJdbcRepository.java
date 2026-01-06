@@ -1,13 +1,13 @@
 package com.udemy.learn_jpa_and_hibernate.Jdbc;
 
-import com.udemy.learn_jpa_and_hibernate.Model.Course;
+import com.udemy.learn_jpa_and_hibernate.Entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
-// in this file we will use JdbcTemplate from spring JDBC
+// in this file we will use JdbcTemplate from  JDBC
 @Repository
 public class CourseJdbcRepository {
 

@@ -1,8 +1,21 @@
-package com.udemy.learn_jpa_and_hibernate.Model;
+package com.udemy.learn_jpa_and_hibernate.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+// add entity annotation to be able to connect to database -JPA
+@Entity
+// if u do not have the course table in the database do this
+//@Entity(name = "course")
 public class Course {
+
+    @Id
     private Long id;
+
+    //@Column(name = "name")
     private String name;
+
+    //@Column(name = "author")
     private String author;
 
     // no arguments constructor
